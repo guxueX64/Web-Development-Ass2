@@ -1,5 +1,5 @@
 const mysql = require('mysql2');
-const pool = mysql.createPool({   //数据连接池
+const pool = mysql.createPool({   //DB Connection Pool
  host: 'localhost',
  port: '3306',
  user: 'root',
@@ -12,7 +12,7 @@ if (pool) {
  console.log('MySQL server started and connected successfully  ...');
 }
 
-//链接数据库
+//Link Database
 function query(sql, callback) {
   console.log('   ');
   console.info('==========', '[  ', sql, '  ]');
@@ -27,6 +27,7 @@ function query(sql, callback) {
     });
   });
 }
+
 module.exports = {
   query
 };

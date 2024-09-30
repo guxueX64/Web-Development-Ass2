@@ -66,8 +66,8 @@ app.get('/detail/:id', function (req, res, next) {
 
 
 
-//端口为8111
+//Access address (port number 8111)
 const server = app.listen(8111, function () {
-  console.log("访问地址:");
+  console.log("Access address:");
   console.log("http://localhost:" + server.address().port + "/index.html");
 });
