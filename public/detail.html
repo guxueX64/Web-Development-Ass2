@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>detail</title>
+	<link href="css/detail.css" rel="stylesheet">
+	<link href="css/share.css" rel="stylesheet">
+</head>
+
+<body>
+	<!--顶部导航-->
+	<div class="headr">
+		<div class="heard-con">
+			<img src="images/logo.jpg"
+				style="margin-top: 7px;float: left;position: absolute;width: 60px;margin-top: 20px;">
+			<div class="headr-nav">
+				<ul>
+					<li><a href="index.html">Index</a> </li>
+					<li><a href="list.html">List</a> </li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!--顶部导航结束-->
+	<!--banner图片-->
+	<div class="her-banner">
+	</div>
+	<!--banner图片结束-->
+	<!--主页内容-->
+	<div class="content">
+		<div class="cont-top">
+			<div class="cont-left">
+				<div class="ctl-img" id="fundraiser_image">
+					<img src="images/logo.jpg" style="width: 400px;height: 400px;" >
+				</div>
+				<div class="collect">
+					<div class="coll">
+						<span id="organizer"></span> is this organizer fundraiser / <span id="active"></span>
+					</div>
+				</div>
+				
+			</div>
+			<div class="cont-right">
+				<div class="J_productTitle title g_minor">
+					<span id="caption"></span>
+				</div>
+				<div class="pic">
+					<span class="ppi">Current funding</span>
+					<span class="f-mallUnit">&nbsp;&nbsp;&nbsp;USD</span>
+					<span class="pcc" id="current_funding"></span>
+				</div>
+				<div class="pic">
+					<span class="ppi">Target funding</span>
+					<span class="f-mallUnit">&nbsp;&nbsp;&nbsp;USD</span>
+					<span  id="target_funding"></span>
+				</div>
+				<div class="pict">
+					<div class="f-proSatifySumWrap">
+						<div class="f-satifyDetail">
+							<span class="g_minor  salesVolume">category:</span><span class="J_commNum" id="name"></span>
+						</div>
+					</div>
+				</div>
+				<div class="pict">
+					<div class="f-proSatifySumWrap">
+						<div class="f-satifyDetail">
+							<span class="g_minor  salesVolume">city:</span><span class="J_commNum" id="city"></span>
+						</div>
+					</div>
+				</div>
+				<div class="fk-pd5MallActBtns">
+					<div class="buttn" onclick="alert('This feature is under contruction')">
+						Donate
+					</div>
+					<div class="buttn butto" onclick="window.location.href='list.html'">
+						Back
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="cont-bot">
+			<div class="hd" style="margin-bottom: 50px;">
+				<ul>
+					<li class="active">
+						<div class="hd1 acti">
+						</div>
+						fundraising detail
+					</li>
+					<li>
+						<div class="hd1">
+						</div>
+						comment(0)
+					</li>
+					<li>
+						<div class="hd1">
+						</div>
+						fundraising log(0)
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!--主页内容结束-->
+	<script>
+		init();
+		function init() {
+			let params = new URLSearchParams(window.location.search)
+			fetch('http://localhost:8111/detail/' + params.get("id")).then(response => {
+				if (!response.ok) {
+					throw new Error('Network response was not ok');
+				}
+				return response.json();
+			}).then(res => {
+				if (res.status == 200) {
+					for (const key in res.data) {
+						if(key=="active"){
+							res.data[key] = res.data[key] == 1?'Active':'Inactive'
+						}
+						try {
+							document.getElementById(key).innerText = res.data[key]
+						} catch (error) {}
+						if(key == 'fundraiser_image'){
+							//渲染图片
+							document.getElementById(key).innerHTML=`<img src="images/${res.data[key]}" style="width: 540px;" >`
+						}
+						
+					}
+				} else {
+					alert(res.code)
+					window.location.href = 'list.html'
+				}
+			}).catch(error => console.error('There was a problem with your fetch operation:', error));
+		}
+
+	</script>
+</body>
+
+</html>

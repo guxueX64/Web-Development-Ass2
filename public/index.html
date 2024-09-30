@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>index</title>
+		<link href="css/index.css" rel="stylesheet">
+		<link href="css/share.css" rel="stylesheet">
+	</head>
+	<body>
+		<!--顶部导航-->
+		<div class="headr">
+			<div class="heard-con">
+				<img src="images/logo.jpg" style="margin-top: 7px;float: left;position: absolute;width: 60px;margin-top: 20px;">
+				<div class="headr-nav">
+					<ul>
+						<li><a href="index.html" style="color: #4AB344"><span style="color: #4AB344">Index</span></a> </li>
+						<li><a href="list.html">List</a> </li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--顶部导航结束-->
+		<!--banner图片-->
+		<div class="her-banner">
+		</div>
+		<!--banner图片结束-->
+		<!--主页上半部内容-->
+		<div class="content">
+			<!--推荐开始-->
+			<div class="recommand clear">
+				<div class="rec-nav clear">
+					<h2>Fundraising  <span>Recommendation</span></h2>
+				</div>
+				<div class="rec-cont clear">
+					<div class="rec-left">
+						<img src="images/rc-1.jpg" style="width: 315px;">
+					</div>
+
+					<div class="rec-right" id="rec-right">
+
+						
+					</div>
+				</div>
+			</div>
+			<!--推荐结束-->
+		</div>
+	</body>
+	<script>
+		fetch('http://localhost:8111/home').then(response => {
+			if (!response.ok) {
+				throw new Error('Network response was not ok');
+			}
+			return response.json();
+		})
+		.then(res => {
+			console.log(res)
+			if(res.status == 200){
+				let array = res.data,str=''
+				for (let index = 0; index < array.length; index++) {
+					const element = array[index];
+					str +=`<div class="rcr">
+							<div class="rcr-top">
+								<img src="images/${element.fundraiser_image}" width="100%">
+							</div>
+							<div class="rcr-bot">
+								<div class="rb-top">
+									${element.caption}
+								</div>
+								<div class="second_P">
+									<span class="fk-prop">USD</span>
+									<span class="fk-prop-price">${element.current_funding}
+									</span>
+									<span class="second_Marketprice">USD ${element.target_funding}</span>
+								</div>
+								<div class="buy">
+									<a class="second_mallBuy" href="detail.html?id=${element.fundraiser_id}">
+										<span style="color: white;">detail</span>
+									</a>
+								</div>
+							</div>
+						</div>`
+				}
+				document.getElementById("rec-right").innerHTML = str
+			}else{
+				alert(res.code)
+			}
+		})
+		.catch(error => console.error('There was a problem with your fetch operation:', error));
+	</script>
+</html>
