@@ -40,12 +40,12 @@ CREATE TABLE `fundraiser`  (
 -- ----------------------------
 -- Records of fundraiser
 -- ----------------------------
-INSERT INTO `fundraiser` VALUES (1, 'OC Firefighters Local 3631', 'Fundraiser for OCFA Handcrew', '500,000', '223,782', 'Chicago', '1', 1, '1.png');
+INSERT INTO `fundraiser` VALUES (1, 'Firefighters Local 3631', 'Fundraiser for OCFA Handcrew', '500,000', '223,782', 'Chicago', '1', 1, '1.png');
 INSERT INTO `fundraiser` VALUES (2, 'Toni Ocallaghan', 'Saving Jay', '250,000', '29,695', 'Los Angeles', '1', 2, '2.png');
 INSERT INTO `fundraiser` VALUES (3, 'Nico Pellatz', 'Neustart für Berkin', '2,000,000', '259,928', 'Seattle', '1', 3, '3.png');
-INSERT INTO `fundraiser` VALUES (4, 'Roxanne De Groof', 'Help mij het leven nog wat langer te vieren.', '95,000', '112,785', 'Los Angeles', '2', 1, '4.png');
+INSERT INTO `fundraiser` VALUES (4, 'Roxanne De Groof', 'Help mij het leven nog wat langer te vieren.', '950,000', '112,785', 'Los Angeles', '2', 1, '4.png');
 INSERT INTO `fundraiser` VALUES (5, 'Gina DellaMonica- Giacchetto and 2 others', 'Join us to help Austin and Bella Trezza and their family', '200,000', '158,835', 'Chicago', '1', 3, '5.png');
 INSERT INTO `fundraiser` VALUES (6, 'Corneby and Titmus Family and Friends and Rob Corneby', 'Help a Family in Need on their Journey to Healing', '100,000', '176,465', 'Los Angeles', '2', 3, '6.png');
-INSERT INTO `fundraiser` VALUES (7, 'Claudia Elsässer is organizing', 'Plötzlicher Tod des Familienvaters', '60,000', '50,075', 'Los Angeles', '2', 1, '7.png');
+INSERT INTO `fundraiser` VALUES (7, 'Claudia Elsässer is organizing', 'Plötzlicher Tod des Familienvaters', '600,000', '50,750', 'Los Angeles', '2', 1, '7.png');
 
 SET FOREIGN_KEY_CHECKS = 1;
