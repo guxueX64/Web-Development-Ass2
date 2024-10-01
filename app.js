@@ -1,34 +1,37 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-//路径模块
+
+//Path Module
 const path = require('path')
 
 const app = express();
-//配置body-parser中间件
-// parse application/x-www-form-urlencoded
+//Configure body—parser middleware
+//parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
-// parse application/json
+//parse application/json
 app.use(bodyParser.json());
-//配置页面
+//Configuration page
 app.use(express.static(path.join(__dirname, 'public')))
-//跨域模块
+//Cross domain module
 app.use(cors())
 
-var { query } = require('./db/db'); //将db.js里面定义的query方法导入
+var { query } = require('./db/db'); //Import the query method defined in db.js
 
 const {
   fundraiserSheet, categorySheet
 } = require('./db/actions');
 
-//首页 为活动中的列表
+//Route for handling GET requests, path '/home'
 app.get('/home', function (req, res, next) {
+  //Querying records in the database with an active field of 1 usually indicates active records
   fundraiserSheet.select(" active=1 ", (err, resdata) => {
+    //Send a response with status code 200, prompt message 'request successful', and retrieved data
     res.send({ status: 200, code: 'request success!', data: resdata });
   });
 });
 
-//列表数据
+//List data
 app.get('/search', function (req, res, next) {
   const query = req.query;
   var str=' 1=1 '
@@ -47,7 +50,7 @@ app.get('/search', function (req, res, next) {
 });
 
 
-//详情
+//Detail
 app.get('/detail/:id', function (req, res, next) {
   if(req.params.id && parseInt(req.params.id)>0){
     const upid = parseInt(req.params.id)
