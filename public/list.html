@@ -9,7 +9,7 @@
 </head>
 
 <body>
-	<!--顶部导航-->
+	<!--Top navigation-->
 	<div class="headr">
 		<div class="heard-con">
 			<img src="images/logo.jpg"
@@ -22,14 +22,16 @@
 			</div>
 		</div>
 	</div>
-	<!--顶部导航结束-->
-	<!--banner图片-->
+	<!--Top navigation-->
+
+	<!--banner-->
 	<div class="her-banner">
 
 	</div>
-	<!--banner图片结束-->
+	<!--banner-->
+
 	<div class="content">
-		<!--开始-->
+		<!--Begin-->
 		<div class="recommand clear">
 			<div class="rec-cont clear">
 				<div class="rec-left">
@@ -94,12 +96,11 @@
 				</div>
 			</div>
 		</div>
-
-		<!--结束-->
+		<!--End-->
 	</div>
 	<script>
 		var city = '', category = '',caption=''
-		//搜索分类
+		//Search Categories
 		function searchCategory(nowCategory) {
 			category = nowCategory
 			nowCategory = nowCategory == '' ? 0 : nowCategory
@@ -113,7 +114,7 @@
 			search();
 		}
 
-		//搜索城市
+		//City Search
 		function searchCity(nowCity) {
 			city = nowCity
 			nowCity = nowCity == '' ? 'All' : nowCity
@@ -127,7 +128,7 @@
 			search();
 		}
 
-		//关键词
+		//Keyword search
 		function searchKey() {
 			let value = document.getElementById("search").value;
 			if (value) {
@@ -139,7 +140,7 @@
 			}
 		}
 		
-		//清除
+		//Clear
 		function searchClear() {
 			if(document.getElementById("search").value){
 				document.getElementById("search").value = ''
