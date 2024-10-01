@@ -9,7 +9,7 @@
 </head>
 
 <body>
-	<!--顶部导航-->
+	<!--Top navigation-->
 	<div class="headr">
 		<div class="heard-con">
 			<img src="images/logo.jpg"
@@ -22,12 +22,12 @@
 			</div>
 		</div>
 	</div>
-	<!--顶部导航结束-->
-	<!--banner图片-->
+	<!--Top navigation-->
+	<!--banner-->
 	<div class="her-banner">
 	</div>
-	<!--banner图片结束-->
-	<!--主页内容-->
+	<!--banner-->
+
 	<div class="content">
 		<div class="cont-top">
 			<div class="cont-left">
@@ -101,7 +101,7 @@
 			</div>
 		</div>
 	</div>
-	<!--主页内容结束-->
+
 	<script>
 		init();
 		function init() {
@@ -121,7 +121,7 @@
 							document.getElementById(key).innerText = res.data[key]
 						} catch (error) {}
 						if(key == 'fundraiser_image'){
-							//渲染图片
+							//Rendering images
 							document.getElementById(key).innerHTML=`<img src="images/${res.data[key]}" style="width: 540px;" >`
 						}
 						
