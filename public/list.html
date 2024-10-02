@@ -40,17 +40,17 @@
 				<div class="rec-left">
 					<div class="classily" style="height: 150px;">
 						<div class="cltop">
-							<p><input style="width: 90%;height: 25px;line-height: 25px;" placeholder="input caption" id="search"/></p>
+							<p><input style="width: 90%;height: 25px;line-height: 25px;" placeholder="Input Caption" id="search"/></p>
 						</div>
 						<div class="cltcon">
 							<div class="buy" style="margin: 0;">
 								<a class="second_mallBuy" href="javascript:void(0)" style="width: 100%;" onclick="searchKey()">
-									<span style="color: white;">search</span>
+									<span style="color: white;">Search</span>
 								</a>
 							</div>
 							<div class="buy" >
 								<a class="second_mallBuy" href="javascript:void(0)" onclick="searchClear()" style="width: 100%;background-color:#dadada">
-									<span style="color: #4AB344;">clear</span>
+									<span style="color: #4AB344;">Clear</span>
 								</a>
 							</div>
 						</div>
@@ -102,8 +102,10 @@
 		<!--End-->
 	</div>
 	<script>
+		//Initialize variables to store search criteria
 		var city = '', category = '',caption=''
-		//Search Categories
+
+		//Category Search Function
 		function searchCategory(nowCategory) {
 			category = nowCategory
 			nowCategory = nowCategory == '' ? 0 : nowCategory
@@ -117,7 +119,7 @@
 			search();
 		}
 
-		//City Search
+		//City Search Function
 		function searchCity(nowCity) {
 			city = nowCity
 			nowCity = nowCity == '' ? 'All' : nowCity
@@ -131,19 +133,19 @@
 			search();
 		}
 
-		//Keyword search
+		//Keyword Search Function
 		function searchKey() {
 			let value = document.getElementById("search").value;
 			if (value) {
 			    caption = value
 				search();
 			}else{
-				alert("please input caption")
+				alert("Please input caption")
 				return
 			}
 		}
 		
-		//Clear
+		//Clear search criteria
 		function searchClear() {
 			if(document.getElementById("search").value){
 				document.getElementById("search").value = ''
@@ -153,8 +155,10 @@
 			}
 		}
 
+		//Initial search
 		search();
 
+		//Perform search based on current criteria
 		function search() {
 			fetch('http://localhost:8111/search?city='+city+'&category_id='+category+"&caption="+caption).then(response => {
 				if (!response.ok) {
@@ -170,7 +174,6 @@
 
 						for (let index = 0; index < array.length; index++) {
 							const element = array[index];
-							
 							str += `<div class="rcr">
 							<div class="rcr-top">
 								<img src="images/${element.fundraiser_image}" width="100%">

@@ -61,14 +61,14 @@
 				<div class="pict">
 					<div class="f-proSatifySumWrap">
 						<div class="f-satifyDetail">
-							<span class="g_minor  salesVolume">category:</span><span class="J_commNum" id="name"></span>
+							<span class="g_minor  salesVolume">Category:</span><span class="J_commNum" id="name"></span>
 						</div>
 					</div>
 				</div>
 				<div class="pict">
 					<div class="f-proSatifySumWrap">
 						<div class="f-satifyDetail">
-							<span class="g_minor  salesVolume">city:</span><span class="J_commNum" id="city"></span>
+							<span class="g_minor  salesVolume">City:</span><span class="J_commNum" id="city"></span>
 						</div>
 					</div>
 				</div>
@@ -88,17 +88,17 @@
 					<li class="active">
 						<div class="hd1 acti">
 						</div>
-						fundraising detail
+						Fundraising Detail
 					</li>
 					<li>
 						<div class="hd1">
 						</div>
-						comment(0)
+						Comment(0)
 					</li>
 					<li>
 						<div class="hd1">
 						</div>
-						fundraising log(0)
+						Fundraising log(0)
 					</li>
 				</ul>
 			</div>
@@ -106,23 +106,33 @@
 	</div>
 
 	<script>
+		//Initialization function, executed during page loading
 		init();
+		//Responsible for obtaining URL parameters and initiating network requests, and then updating page content based on the request results
 		function init() {
+			//Create URL parameter object to obtain GET parameters
 			let params = new URLSearchParams(window.location.search)
+			//Initiate a network request to obtain details page data
 			fetch('http://localhost:8111/detail/' + params.get("id")).then(response => {
+				//Check the network response status and throw an error if it is not normal
 				if (!response.ok) {
 					throw new Error('Network response was not ok');
 				}
+				//Parse response to JSON format
 				return response.json();
 			}).then(res => {
+				//Check the request status, if it is 200, update the page content
 				if (res.status == 200) {
+					//Traverse response data and update page element text content
 					for (const key in res.data) {
+						//Determine whether to display 'Active' or 'Inactive' based on the value of the 'active' field
 						if(key=="active"){
 							res.data[key] = res.data[key] == 1?'Active':'Inactive'
 						}
 						try {
 							document.getElementById(key).innerText = res.data[key]
 						} catch (error) {}
+						//Special processing of image fields, rendering images by setting inline styles
 						if(key == 'fundraiser_image'){
 							//Rendering images
 							document.getElementById(key).innerHTML=`<img src="images/${res.data[key]}" style="width: 540px;" >`
@@ -130,6 +140,7 @@
 						
 					}
 				} else {
+					//If the request status is not 200, an error code will be displayed and redirected to the list page
 					alert(res.code)
 					window.location.href = 'list.html'
 				}
