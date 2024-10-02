@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 //Cross domain module
 app.use(cors())
 
-var { query } = require('./db/db'); //Import the query method defined in db.js
+var { query } = require('./db/crowdfunding_db'); //Import the query method defined in db.js
 
 const {
   fundraiserSheet, categorySheet
