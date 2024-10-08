@@ -1,7 +1,7 @@
 var {
   fundraiser,category
 } = require('./table'); //Importing table information defined in table.js
-var { query } = require('./db'); //Import the query method defined in db.js
+var { query } = require('./crowdfunding_db'); //Import the query method defined in db.js
 class Surface { //Declared table operation class
   fieds = [];
   sheetName = '';
